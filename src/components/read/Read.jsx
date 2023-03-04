@@ -6,13 +6,16 @@ import { Link } from 'react-router-dom';
 
 export default function Read(){
     const [apiData, setApiData] = useState([]);
+  
     useEffect(()=>{
       axios.get("https://640234e1302b5d671c35b40b.mockapi.io/crud")
       .then((getData) => {
          setApiData(getData.data)
       })
-    })
-    
+    },[])
+    const setID = () =>{
+      console.log()
+    }
     return(
         <div>
             <h4>Read Operations</h4>
@@ -38,16 +41,22 @@ export default function Read(){
             <Table.Cell>{a.lname}</Table.Cell>
 
             <Table.Cell>
-
-              <Button color="green">Update</Button>
+              <Link to="/update">
+              <Button color="green" onClick = { () => setID (data.id) }>Update</Button>
+              </Link>
               </Table.Cell>
             <Table.Cell>
             
+            <Link to = "/delete">
+              
               <Button color="red">
                 Delete
-              {/* <Link to = "/delete">  Delete</Link> */}
               </Button>
               
+              </Link>
+               
+               {/* <Button color="red">delete</Button> */}
+               
               </Table.Cell>
             
             </Table.Row>
