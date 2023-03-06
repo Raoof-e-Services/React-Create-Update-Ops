@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import { Button,  Form } from 'semantic-ui-react'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Create(){
-    
+
+    let navi = useNavigate();
 const[fname, setFname] = useState("");
 const[lname, setLname] = useState("");
 
@@ -11,8 +13,7 @@ const sendDataToApi = () =>{
 axios.post("https://640234e1302b5d671c35b40b.mockapi.io/crud", {
     fname,
     lname
-})
-
+}).then(()=> {navi("/read")});
 }
 
     return(
